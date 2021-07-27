@@ -1,0 +1,154 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "h h h"
+    "a m m"
+    "a m m"
+    "f m m";
+    background-color: #191919;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+
+
+.header {
+    grid-area: h;
+    width: 100vw;
+height: 10vh;
+    background-color: black;
+}
+
+.aside_bar {
+    grid-area: a;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 5vh;
+    margin-top: -8.2vh;
+    padding-top: 2vh;
+    background-color: #212121;
+    padding-bottom: 2vh;
+    margin-right: 2vw;
+}
+
+
+.nav_buttons {
+color: white;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 102.7%;
+    padding-left: 0.5vw;
+
+}
+
+.nav_buttons:hover {
+    color: burlywood;
+    background-color: #191919;
+
+}
+
+
+.main-content {
+    grid-area: m;
+    margin-top: -8vh;
+}
+
+
+.footer {
+    grid-area: f;
+    height: 10vh;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.4%;
+    flex-shrink: initial;
+}
+
+.header_input {
+    width: 20%;
+    height: 4%;
+margin-right: 55vw;
+    margin-left: 14vw;
+}
+
+.header_button {
+    margin-left: 400px;
+}
+
+
+.logo_image {
+    width: 100%;
+    height: 100%;
+    margin-left: 7vw;
+    margin-right: 4vw;
+}
+
+.logo_route {
+    width: 3%;
+height: 3%;
+}
+
+
+.profile_container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 35px 35px;
+    grid-template-areas:
+    "p i i"
+    "p i i"
+    "uf up up"
+    "uf ps ps"
+    "uf ps ps";
+
+}
+
+.image_container {
+    grid-area: p;
+}
+
+.user_information {
+    grid-area: i;
+
+    width: 27.8vw;
+}
+
+.user_photos {
+    grid-area: up;
+
+    margin-top: -8.7vh;
+    width: 27.8vw;
+}
+
+
+.user_posts {
+    position: absolute;
+    grid-area: ps;
+    margin-top: -25.4vh;
+    width: 27.8vw;
+}
+
+.user_friends {
+    grid-area: uf;
+}
+
+.post_input {
+    width: 100%;
+}
+
+
+
