@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {userInfo} from "../../interfaces/interface";
 
 
@@ -43,6 +43,7 @@ const InfoChanger = () => {
         console.log(rerender)
         console.log(User.posts)
     }
+
 
 
 const RenderPosts = () => {

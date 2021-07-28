@@ -1,9 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link, NavLink } from "react-router-dom";
 import Logo from "./../assets/logo.png"
 
 
-const Header = () => {
+interface IProps {
+    modalHandler(val: boolean, c: number): void
+}
+
+const Header = (props: IProps) => {
+const [modal, setModal] = useState(true)
+    const [creator, setCreator] = useState(0)
+
+    const modalHandler = (c: number) => {
+    setModal(prev => !prev)
+        props.modalHandler(modal, c)
+    }
+
     return (
         <div className="header">
             <div className="container">
@@ -13,8 +25,10 @@ const Header = () => {
                     <input type="text" placeholder="Search..." />
                         <i className="circular search link icon"></i>
                 </div>
-                <button className="ui inverted teal button header_button">Sign In</button>
+                <button onClick={() => {modalHandler(1)}} className="ui inverted teal button header_button">Sign In</button>
+                <button onClick={() => {modalHandler(2)}} className="ui inverted primary button header_button">Sign up</button>
             </div>
+
         </div>
     )
 }
