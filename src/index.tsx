@@ -3,11 +3,32 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {applyMiddleware, compose, createStore} from "redux";
+import reduxThunk from 'redux-thunk';
+import reducers from './redux/reducers';
+import { Provider } from 'react-redux';
+
+
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+    reducers,
+    composeEnhancers(applyMiddleware(reduxThunk))
+);
+
+function Fix() {
+    //@ts-ignore
+    return (<App />)
+}
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+      <Provider store={store}>
+          <Fix />
+      </Provider>
+  </React.StrictMode>
+,
   document.getElementById('root')
 );
 

@@ -1,17 +1,48 @@
 {
   "users": [
     {
+      "login": "re1nhart",
+      "password": "1488",
+      "userphoto": "https://cdnb.artstation.com/p/assets/images/images/006/603/409/large/adnan-ali-johnny-sins.jpg?1499885045",
       "name": "Evgeniy",
       "about": "bark",
       "surname": "Kokaiko",
       "city": "Uzhgorod",
       "country": "Ukraine",
+      "email": "eugene.kokaiko@gmail.com",
       "friends": 200,
       "subscribers": 500,
       "photos": 136,
       "videos": 151,
-      "uid": 1,
-      "isAdmin": true
+      "id": "re1nhart",
+      "isAdmin": true,
+      "posts": [
+        {
+          "id": 1,
+          "value": "Hello World",
+          "date": "Today"
+        }
+      ],
+      "friendList": []
+    },
+    {
+      "login": "keker54",
+      "password": "13",
+      "userphoto": "https://lastfm.freetls.fastly.net/i/u/ar0/95e5b1c71b4564eae07947cce9cffff0.jpg",
+      "name": "Oleg",
+      "about": "",
+      "surname": "Mavromati",
+      "city": "",
+      "country": "",
+      "email": "olegEshkere@mail.ru",
+      "friends": 0,
+      "subscribers": 0,
+      "photos": 0,
+      "videos": 0,
+      "id": "keker54",
+      "isAdmin": false,
+      "posts": [],
+      "friendList": []
     }
   ]
 }

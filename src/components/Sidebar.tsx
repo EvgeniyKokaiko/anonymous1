@@ -16,6 +16,7 @@ const Sidebar = () => {
             <NavLink className="nav_buttons" exact to="/Photos"><i className="object group outline icon"></i> Secret(Photos)</NavLink>
             <NavLink className="nav_buttons" exact to="/Music"><i className="music white icon"></i> Free Music</NavLink>
             <NavLink className="nav_buttons" exact to="/Videos"><i className="eye slash outline icon"></i> Video - "How to break Pentagon"</NavLink>
+            <NavLink className="nav_buttons" exact to="/AllUsers"><i className=""></i>User Database</NavLink>
         </div>
     )
 }
