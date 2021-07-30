@@ -1,14 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
+import {ReactReduxContext} from "react-redux";
 
 
 
 
 const Sidebar = () => {
 
+    const context = useContext(ReactReduxContext)
+    console.log(context.store.getState().SignReducer.login)
+const user = context.store.getState().SignReducer.id
+
     return (
         <div className="aside_bar">
-            <NavLink className="nav_buttons" exact to="/user_profile"><i className="address book outline icon"></i> My Anonymous</NavLink>
+            <NavLink className="nav_buttons" exact to={`/user_profile/${user}`}><i className="address book outline icon"></i> My Anonymous</NavLink>
             <NavLink className="nav_buttons" exact to="/"><i className="newspaper outline icon"></i> AnoNews</NavLink>
             <NavLink className="nav_buttons" exact to="/Messenger"><i className="phone volume icon"></i> Letters</NavLink>
             <NavLink className="nav_buttons" exact to="/Friends"><i className="users white icon"></i> Friends</NavLink>

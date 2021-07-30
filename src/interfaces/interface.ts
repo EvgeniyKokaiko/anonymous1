@@ -7,6 +7,7 @@ export interface userInfo {
     surname: string,
     city: string,
     country: string,
+    email: string
     friends: number,
     subscribers: number,
     photos: number,

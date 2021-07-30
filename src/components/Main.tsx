@@ -15,7 +15,7 @@ import AllUsers from "./Main/AllUsers";
 const Main = () => {
     return (
         <div className="main-content">
-            <Route exact path="/user_profile/" component={MyPage} />
+            <Route exact path="/user_profile/:id" component={MyPage} />
             <Route exact path="/"             component={News} />
             <Route exact path="/Messenger"    component={Messages} />
             <Route exact path="/Friends"      component={MyFriends} />

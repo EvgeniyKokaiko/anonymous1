@@ -23,7 +23,7 @@ function SignReducer(state = init, action: Dispatcher) {
     } else if (action.type === redux_types.Register) {
     }
 
-    return [...state]
+    return state
 }
 
 
