@@ -4,7 +4,7 @@ import {fetchUsers} from "../../redux/actions";
 import {Dispatcher, userInfo} from "../../interfaces/interface";
 import {Dispatch} from "redux";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import {Link, NavLink } from "react-router-dom";
 
 
 interface IProps {
@@ -23,28 +23,38 @@ const AllUsers = (props:IProps) => {
         setData(props.UserReducer)
     }
 
+    useEffect(() => {
+        props.fetchUsers()
+
+    },[])
+
     const renderList = () => {
-        return data.map(el => {
-            return (
-                <div className="ui segment">
-            <div key={el.id} className="ui comments">
-                <div className="comment">
-                    <NavLink className="avatar" to={`/user_profile/${el.id}`} >
-                        <img src={el.userphoto} />
-                    </NavLink>
-                    <div className="content">
-                        <a className="author">{el.name} {el.surname}</a>
-                        <div className="metadata">
-                        </div>
-                        <div className="text">
-                            {el.email}
-                        </div>
+        if (data.length > 1) {
+            return data.map((el, index) => {
+                console.log(el)
+                return (
+                    <div className="ui segment">
+                        <Link to={{pathname: `/user_profile/${el.id}`, state: {el}}}>
+                            <div key={el.id} className="ui comments">
+                                <div className="comment">
+                <span className="avatar">
+                        <img src={el.userphoto}/>
+                </span>
+                                    <div className="content">
+                                        <a className="author">{el.name} {el.surname}</a>
+                                        <div className="metadata">
+                                        </div>
+                                        <div className="text">
+                                            {el.email}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
-                </div>
-            </div>
-                </div>
-        )
-    })
+                )
+            })
+        }
 }
 
 

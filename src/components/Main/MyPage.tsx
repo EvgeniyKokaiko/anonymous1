@@ -1,10 +1,13 @@
 import React, {useMemo, useState} from "react";
-import {userInfo} from "../../interfaces/interface";
+import {userInfo, userPosts} from "../../interfaces/interface";
 import {connect} from "react-redux";
+import {MyAddPost} from "../../redux/actions";
 
 
 interface IProps {
     SignReducer: userInfo
+
+    MyAddPost(login: string, editValues: userPosts[]) : any
 }
 
 const MyPage = (props: IProps) => {
@@ -21,9 +24,9 @@ const InfoChanger = () => {
 
     const AddPost = () => {
         const random = Math.random()
-       // User.posts.push({id:random, value: postVal, date: DateParser()})
         const value = postVal === "" ? "Anonymous" : postVal
         setRerender([...rerender, {id:random, value: value, date: DateParser()}])
+       props.MyAddPost(props.SignReducer.id, [...User.posts, {id:random, value: value, date: DateParser()}])
         console.log(rerender)
         console.log(User.posts)
     }
@@ -38,7 +41,7 @@ const RenderPosts = () => {
                 <div key={el.id} className="ui comments">
                     <div className="comment">
                         <a className="avatar">
-                            <img src={User?.userphoto} />
+                            <img className="avatar_img" src={User?.userphoto} />
                         </a>
                         <div className="content">
                             <a className="author">{User?.name}{User?.surname}</a>
@@ -76,7 +79,7 @@ let [postVal, setPostVal] = useState("")
             <div className="image_container">
                 <div className="ui card">
                     <div className="image">
-                        <img src={User?.userphoto}/>
+                        <img className="avatar_img" src={User?.userphoto}/>
                     </div>
                 </div>
             </div>
@@ -102,7 +105,7 @@ let [postVal, setPostVal] = useState("")
             </div>
             </div>
 
-            <div className="user_posts">
+            <div className="my_user_posts">
             <div className="ui segment">
                 <div className="ui icon input post_input">
                     <input type="text" value={postVal} onChange={(e) => {setPostVal(e.target.value)}} placeholder="Write something..." />
@@ -127,4 +130,4 @@ const mapStateToProps = (state: object) => {
 }
 
 
-export default connect(mapStateToProps , {})(MyPage)
+export default connect(mapStateToProps , {MyAddPost})(MyPage)

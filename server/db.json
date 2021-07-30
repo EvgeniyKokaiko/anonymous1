@@ -21,6 +21,21 @@
           "id": 1,
           "value": "Hello World",
           "date": "Today"
+        },
+        {
+          "id": 0.5197957123718266,
+          "value": "Arigato",
+          "date": "2021/7/30"
+        },
+        {
+          "id": 0.7159402722149699,
+          "value": "Arigato",
+          "date": "2021/7/30"
+        },
+        {
+          "id": 0.44345427914691093,
+          "value": "Obama Gay",
+          "date": "2021/7/30"
         }
       ],
       "friendList": []
@@ -41,8 +56,16 @@
       "videos": 0,
       "id": "keker54",
       "isAdmin": false,
-      "posts": [],
-      "friendList": []
+      "posts": [
+        {
+          "id": 1,
+          "value": "Hello Anonymous Community",
+          "date": "Today"
+        }
+      ],
+      "friendList": [
+        {}
+      ]
     },
     {
       "login": "kris54",
@@ -60,8 +83,16 @@
       "videos": 0,
       "id": "kris54",
       "isAdmin": false,
-      "posts": [],
-      "friendList": []
+      "posts": [
+        {
+          "id": 1,
+          "value": "Hello Anonymous Community",
+          "date": "Today"
+        }
+      ],
+      "friendList": [
+        {}
+      ]
     },
     {
       "login": "cyberiden",
@@ -78,6 +109,68 @@
       "photos": 0,
       "videos": 0,
       "id": "cyberiden",
+      "isAdmin": false,
+      "posts": [
+        {
+          "id": 1,
+          "value": "Hello Anonymous Community",
+          "date": "Today"
+        },
+        {
+          "id": 0.981232121341088,
+          "value": "OLA NIGGERS!",
+          "date": "2021/7/30"
+        }
+      ],
+      "friendList": [
+        {}
+      ]
+    },
+    {
+      "login": "zulul4",
+      "password": "1234",
+      "userphoto": "https://icdn.lenta.ru/images/2020/08/05/12/20200805123026612/square_1024_20f59a731aa3b2bcdec6a8aeab240d8d.jpg",
+      "name": "Антон",
+      "about": "",
+      "surname": "Гвардіонов",
+      "city": "",
+      "country": "",
+      "email": "hubkabob5@ukr.net",
+      "friends": 0,
+      "subscribers": 0,
+      "photos": 0,
+      "videos": 0,
+      "id": "zulul4",
+      "isAdmin": false,
+      "posts": [
+        {
+          "id": 0.3785888722283355,
+          "value": "PUBG <3",
+          "date": "2021/7/30"
+        },
+        {
+          "id": 0.9959729677981874,
+          "value": "Pozhiloy Recront",
+          "date": "2021/7/30"
+        }
+      ],
+      "friendList": []
+    },
+    {
+      "login": "myro1",
+      "password": "1",
+      "userphoto": "https://r5.mt.ru/r2/photo8BF4/20070277849-0/jpg/bp@2x.webp",
+      "name": "Myro",
+      "about": "",
+      "surname": "Margita",
+      "city": "",
+      "country": "",
+      "email": "hubkabob6@ukr.net",
+      "friends": 0,
+      "subscribers": 0,
+      "photos": 0,
+      "videos": 0,
+      "id": "myro1",
       "isAdmin": false,
       "posts": [],
       "friendList": []

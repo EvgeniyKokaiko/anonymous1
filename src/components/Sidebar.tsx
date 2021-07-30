@@ -13,7 +13,8 @@ const user = context.store.getState().SignReducer.id
 
     return (
         <div className="aside_bar">
-            <NavLink className="nav_buttons" exact to={`/user_profile/${user}`}><i className="address book outline icon"></i> My Anonymous</NavLink>
+            <NavLink className="nav_buttons" exact to={`/my_user_profile/${user}`}><i className="address book outline icon"></i> My Anonymous</NavLink>
+            <NavLink className="nav_buttons" exact to="/AllUsers"><i className="user secret icon"></i>User Database</NavLink>
             <NavLink className="nav_buttons" exact to="/"><i className="newspaper outline icon"></i> AnoNews</NavLink>
             <NavLink className="nav_buttons" exact to="/Messenger"><i className="phone volume icon"></i> Letters</NavLink>
             <NavLink className="nav_buttons" exact to="/Friends"><i className="users white icon"></i> Friends</NavLink>
@@ -21,7 +22,6 @@ const user = context.store.getState().SignReducer.id
             <NavLink className="nav_buttons" exact to="/Photos"><i className="object group outline icon"></i> Secret(Photos)</NavLink>
             <NavLink className="nav_buttons" exact to="/Music"><i className="music white icon"></i> Free Music</NavLink>
             <NavLink className="nav_buttons" exact to="/Videos"><i className="eye slash outline icon"></i> Video - "How to break Pentagon"</NavLink>
-            <NavLink className="nav_buttons" exact to="/AllUsers"><i className=""></i>User Database</NavLink>
         </div>
     )
 }

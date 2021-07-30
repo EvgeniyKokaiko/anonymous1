@@ -9,13 +9,14 @@ import Photos from "./Main/Photos";
 import Music from "./Main/Music";
 import Videos from "./Main/Videos";
 import AllUsers from "./Main/AllUsers";
+import UserPage from "./Main/UserPage";
 
 
 
 const Main = () => {
     return (
         <div className="main-content">
-            <Route exact path="/user_profile/:id" component={MyPage} />
+            <Route exact path="/my_user_profile/:id" component={MyPage} />
             <Route exact path="/"             component={News} />
             <Route exact path="/Messenger"    component={Messages} />
             <Route exact path="/Friends"      component={MyFriends} />
@@ -24,6 +25,7 @@ const Main = () => {
             <Route exact path="/Music"        component={Music} />
             <Route exact path="/Videos"       component={Videos} />
             <Route exact path="/AllUsers"       component={AllUsers} />
+            <Route exact path="/user_profile/:id" component={UserPage} />
         </div>
     )
 }

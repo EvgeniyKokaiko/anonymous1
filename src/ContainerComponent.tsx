@@ -124,7 +124,7 @@ const ContainerComponent = (props: IProps) => {
                         <br/>
                         <br/>
                         <div className="ui input login_input">
-                            <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} placeholder="Login" className="modal_input" />
+                            <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} placeholder="Surname" className="modal_input" />
                         </div>
                     </div>
                     <div className="content">

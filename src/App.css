@@ -110,6 +110,14 @@ height: 3%;
 }
 
 
+.image {
+    min-height: 400px;
+}
+
+.ui.card>.image>img, .ui.cards>.card>.image>img {
+    height: 42vh;
+}
+
 .profile_container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -141,6 +149,18 @@ position: relative;
     width: 27.8vw;
 }
 
+
+
+
+.my_user_posts {
+    position: absolute;
+    grid-area: ps;
+    margin-top: -25.4vh;
+    width: 27.8vw;
+    height: 50vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 
 .user_posts {
     position: absolute;

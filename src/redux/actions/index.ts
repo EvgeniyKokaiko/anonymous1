@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Dispatcher, userInfo} from "../../interfaces/interface";
+import {Dispatcher, userInfo, userPosts} from "../../interfaces/interface";
 import {Dispatch} from "redux";
 import {redux_types} from "../types";
 
@@ -50,4 +50,12 @@ export const Register = (name: string, surname: string, email: string, login: st
 
     dispatch({ type: redux_types.Register});
 
+}
+
+
+export const MyAddPost = (login: string,editValues: userPosts[]) => async (dispatch: Dispatch<Dispatcher>) => {
+
+    const response = await axios.patch(`http://localhost:3001/users/${login}`, {posts: editValues})
+
+    dispatch({type: redux_types.MeAddPost, payload: response.data})
 }

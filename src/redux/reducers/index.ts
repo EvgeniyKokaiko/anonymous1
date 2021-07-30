@@ -26,9 +26,17 @@ function SignReducer(state = init, action: Dispatcher) {
     return state
 }
 
+function MeAddPostReducer(state = [], action: Dispatcher) {
+    if (action.type === redux_types.MeAddPost) {
+        return action.payload
+    }
+    return state
+}
+
 
 
 export default combineReducers({
     UserReducer,
-    SignReducer
+    SignReducer,
+    MeAddPostReducer
 })

@@ -12,7 +12,7 @@ export interface userInfo {
     subscribers: number,
     photos: number,
     videos: number,
-    id: number,
+    id: string,
     isAdmin: boolean,
     posts: userPosts[],
     friendList: string[]
