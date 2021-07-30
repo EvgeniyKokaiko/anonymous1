@@ -21,7 +21,7 @@ const AuthModal = (props: IProps) => {
 
     return createPortal(
         <div onClick={modalHandler} className="ui dimmer modals visible active modalWindow">
-            <div onClick={e => e.stopPropagation()} className="ui standard modal visible active">
+            <div onClick={e => e.stopPropagation()} className="ui standard modal visible active modal_body">
                 {props.data()}
             </div>
         </div>

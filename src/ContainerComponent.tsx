@@ -41,7 +41,6 @@ const ContainerComponent = (props: IProps) => {
     const [authPassword, setAuthPassword] = useState("")
     const [remember, setRemember] = useState(false)
 
-
     //Register
     const [email, setEmail] = useState("");
     const [RegUsername, setRegUsername] = useState("");
@@ -56,6 +55,7 @@ const ContainerComponent = (props: IProps) => {
        showModal(prev => !prev)
        setCreator(c)
     }
+    
 
    const  LoginSubmit = () => {
         props.Login(authUsername, authPassword);

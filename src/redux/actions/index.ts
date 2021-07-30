@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Dispatcher, userInfo, userPosts} from "../../interfaces/interface";
+import {Dispatcher, userPosts} from "../../interfaces/interface";
 import {Dispatch} from "redux";
 import {redux_types} from "../types";
 
@@ -27,7 +27,7 @@ try {
 
 export const Register = (name: string, surname: string, email: string, login: string, password: string, re_password: string, image: string) => async (dispatch: Dispatch<Dispatcher>) => {
 
-    const response = axios.post('http://localhost:3001/users', {
+    await axios.post('http://localhost:3001/users', {
         login: login,
         password: password,
         userphoto: image,
@@ -64,4 +64,16 @@ export const LogOut = () => {
     return {
         type: redux_types.LogOut,
     }
+}
+
+
+export const ChangeUserData = (login: string, about: string, city: string, country: string, userphoto: string) => async (dispatch: Dispatch<Dispatcher>) => {
+
+    const response = await axios.patch(`http://localhost:3001/users/${login}`, {
+        about: about,
+        city: city,
+        country: country,
+        userphoto: userphoto,
+    })
+    dispatch({type: redux_types.ChangeMyData, payload: response.data})
 }

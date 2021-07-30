@@ -1,26 +1,44 @@
-import React, {useMemo, useState} from "react";
-import {userInfo, userPosts} from "../../interfaces/interface";
+import React, {useState} from "react";
+import {Dispatcher, userInfo, userPosts} from "../../interfaces/interface";
 import {connect} from "react-redux";
 import {MyAddPost} from "../../redux/actions";
+import {ChangeUserData} from "../../redux/actions";
+import {Dispatch} from "redux";
 
 
 interface IProps {
     SignReducer: userInfo
-
+    ChangeUserData(login: string,about: string, city: string, country: string, userphoto: string):any
     MyAddPost(login: string, editValues: userPosts[]) : any
 }
 
 const MyPage = (props: IProps) => {
-
+    const [isChange, setChange] = useState(false)
     const User: userInfo = props.SignReducer
+
+
+    const [thinks, setThinks] = useState(User?.about);
+    const [city, setCity] = useState(User?.city);
+    const [country, setCountry] = useState(User?.country);
+    const [photo, changePhoto] = useState(User?.userphoto);
+
 
 const InfoChanger = () => {
         return (
             <>
-                <button className="ui inverted violet button">Change</button>
+                <button onClick={ChangeData} className="ui inverted violet button">Change</button>
             </>
         )
 }
+
+const ChangeData = () => {
+    setChange(prev=> !prev);
+
+    if (isChange === true) {
+        props.ChangeUserData(props.SignReducer.id, thinks, city, country, photo)
+    }
+}
+
 
     const AddPost = () => {
         const random = Math.random()
@@ -40,11 +58,11 @@ const RenderPosts = () => {
             return (
                 <div key={el.id} className="ui comments">
                     <div className="comment">
-                        <a className="avatar">
-                            <img className="avatar_img" src={User?.userphoto} />
-                        </a>
+                        <span className="avatar">
+                            <img className="avatar_img" src={User?.userphoto} alt="UserPhoto" />
+                        </span>
                         <div className="content">
-                            <a className="author">{User?.name}{User?.surname}</a>
+                            <span className="author">{User?.name}{User?.surname}</span>
                             <div className="metadata">
                                 <div className="date">{el.date}</div>
                             </div>
@@ -65,8 +83,7 @@ const DateParser = () => {
     let day = dateObj.getUTCDate();
     let year = dateObj.getUTCFullYear();
 
-    let newdate: string = year + "/" + month + "/" + day;
-    return newdate
+    return year + "/" + month + "/" + day
 }
 const [rerender, setRerender] = useState(User?.posts)
 
@@ -79,18 +96,18 @@ let [postVal, setPostVal] = useState("")
             <div className="image_container">
                 <div className="ui card">
                     <div className="image">
-                        <img className="avatar_img" src={User?.userphoto}/>
+                        {isChange === false ? <img className="avatar_img" src={User?.userphoto} alt="UserPhoto"/> : <input onChange={e => changePhoto(e.target.value)} value={photo} type="text" placeholder="Change Photo"/>}
                     </div>
                 </div>
             </div>
             <div className="user_information">
                 <div className="ui segment black">
                     <h2>{User?.name} {User?.surname}</h2>
-                    <h3>Thinks: {User?.about}</h3>
+                    {isChange === false ? <h3>Thinks: {User?.about}</h3>: <input onChange={e => setThinks(e.target.value)} value={thinks} type="text" placeholder="Change Thinks"/>}
                     <h3>{InfoChanger()}</h3>
                 <hr/>
-                <h4>My city: {User?.city}</h4>
-                    <h4>My country: {User?.country}</h4>
+                    {isChange === false ?<h4>My city: {User?.city}</h4> : <input onChange={e => setCity(e.target.value)} value={city} type="text" placeholder="Change City"/>}
+                    {isChange === false ? <h4>My country: {User?.country}</h4> : <input onChange={e => setCountry(e.target.value)} value={country} type="text" placeholder="Change Country"/>}
                     <div className="ui buttons">
                         <button className="ui button">Friends: {User?.friends}</button>
                         <button className="ui button">Subscribers: {User?.subscribers}</button>
@@ -130,4 +147,4 @@ const mapStateToProps = (state: object) => {
 }
 
 
-export default connect(mapStateToProps , {MyAddPost})(MyPage)
+export default connect(mapStateToProps , {MyAddPost,ChangeUserData})(MyPage)

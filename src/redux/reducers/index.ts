@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {Dispatcher, userInfo} from "../../interfaces/interface";
+import {Dispatcher} from "../../interfaces/interface";
 import {redux_types} from "../types";
 
 
@@ -36,9 +36,18 @@ function MeAddPostReducer(state = [], action: Dispatcher) {
 }
 
 
+function MeChangeDataReducer(state = "", action: Dispatcher) {
+    if (action.type === redux_types.ChangeMyData) {
+        return action.payload
+    }
+    return state
+}
+
+
 
 export default combineReducers({
     UserReducer,
     SignReducer,
-    MeAddPostReducer
+    MeAddPostReducer,
+    MeChangeDataReducer
 })

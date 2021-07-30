@@ -191,6 +191,7 @@ position: relative;
     height: 100vh;
 }
 
+
 .grid-container_modal {
     display: grid;
     grid-template-columns: 2fr 2fr 2fr 2fr;
@@ -212,7 +213,10 @@ position: relative;
 }
 
 .modal_input {
-    width: 30vw;
+    width: 20vw;
+}
+.login_input {
+    width: 20vw;
 }
 
 .video_container {
@@ -227,7 +231,7 @@ position: relative;
 }
 
 .ui.input>input {
-    width: 49.5vw;
+    width: 47.5vw;
 }
 .ui.input>input {
     max-width: 49.5vw;

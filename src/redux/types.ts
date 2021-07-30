@@ -3,5 +3,6 @@ export enum redux_types {
     FetchMe = "AUTH_USER",
     Register = "REG_USER",
     MeAddPost = "I_ADD_POST",
-    LogOut = "LOG_OUT"
+    LogOut = "LOG_OUT",
+    ChangeMyData = "CHANGE_USER_DATA"
 }
