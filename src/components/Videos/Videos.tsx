@@ -6,7 +6,7 @@ import {Video} from "./VideoInterface";
 
 
 const Videos = (): JSX.Element => {
-    const [search, setSearch]: [string, Function] = useState("")
+    const [search, setSearch]: [string, Function] = useState("How To Break Pentagon?")
     const [videos, setVideos]: [Video[], Function] = useState([])
     const [current, setCurrent]: [Video, Function] = useState(videos[0]);
 
@@ -55,6 +55,28 @@ const Videos = (): JSX.Element => {
 
     }
 
+    const RenderThumbs = () => {
+        return videos.map((el: Video,index:number) => {
+            if (current !== el) {
+            return (
+                <div onClick={() => setCurrent(videos[index])} className="ui segment item">
+                    <img
+                        alt="fas"
+                        className="thumb_image"
+                        src={el.snippet.thumbnails.high.url}
+                    />
+                    <div className="content">
+                        <div className="header thumb_header">{el.snippet.title}</div>
+                    </div>
+                </div>
+            )}
+
+        })
+
+    }
+
+
+
 
         return (
             <div className="video_container">
@@ -66,7 +88,7 @@ const Videos = (): JSX.Element => {
                     {renderFrame()}
                 </div>
                 <div className="videos_thumb">
-
+                    {RenderThumbs()}
                 </div>
             </div>
         )

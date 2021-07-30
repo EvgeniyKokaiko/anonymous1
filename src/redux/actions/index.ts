@@ -59,3 +59,9 @@ export const MyAddPost = (login: string,editValues: userPosts[]) => async (dispa
 
     dispatch({type: redux_types.MeAddPost, payload: response.data})
 }
+
+export const LogOut = () => {
+    return {
+        type: redux_types.LogOut,
+    }
+}

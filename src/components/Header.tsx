@@ -1,18 +1,20 @@
 import React, {useContext, useState} from "react";
 import {Link, NavLink } from "react-router-dom";
 import Logo from "./../assets/logo.png"
-import {ReactReduxContext} from "react-redux";
+import {connect, ReactReduxContext} from "react-redux";
+import {LogOut} from "../redux/actions";
+import {userInfo} from "../interfaces/interface";
 
 
 interface IProps {
     modalHandler(val: boolean, c: number): void
     isAuth: boolean
-    LogOut(): void
+   LogOut?(): Function
+    SignReducer?: userInfo
 }
 
 const Header = (props: IProps) => {
-    const context = useContext(ReactReduxContext)
-    console.log(context.store.getState().SignReducer[0])
+
 const [modal, setModal] = useState(true)
     const [creator, setCreator] = useState(0)
     const [render, setRender] = useState(false)
@@ -20,22 +22,13 @@ const [modal, setModal] = useState(true)
     const modalHandler = (c: number) => {
     setModal(prev => !prev)
         props.modalHandler(modal, c)
-    }
-
-
-let a = context.store?.getState()?.SignReducer
-
-    const LogOutHandler = () => {
-        props.LogOut();
-        setRender(prev => !prev)
+        console.log(props);
     }
 
 
     const renderButtons = () => {
-        console.log(context.store?.getState()?.SignReducer)
-        console.log(render)
-        return ( render === true ?
-            <button onClick={() => {;props.LogOut();setRender(false)}} className="ui inverted red button header_button">Log Out</button>
+        return ( props?.SignReducer?.login !== undefined ?
+            <button onClick={props?.LogOut} className="ui inverted red button header_button">Log Out</button>
         :
                 <React.Fragment>
                     <button onClick={() => {modalHandler(1);setRender(true)}} className="ui inverted teal button header_button">Sign In</button>
@@ -52,7 +45,7 @@ let a = context.store?.getState()?.SignReducer
                          to="/"><img className="logo_image" src={Logo} alt=""/></NavLink>
                     <div className="ui icon input header_input">
                     <input type="text" placeholder="Search..." />
-                        <i className="circular search link icon"></i>
+                        <i className="circular search link icon" style={{position: "relative", left: "-6%"}}></i>
                 </div>
                 {renderButtons()}
             </div>
@@ -61,5 +54,9 @@ let a = context.store?.getState()?.SignReducer
     )
 }
 
+const mapStateToProps = (state: any) => {
+    return state
+}
 
-export default Header
+
+export default connect(mapStateToProps, {LogOut})(Header)

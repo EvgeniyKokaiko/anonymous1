@@ -74,8 +74,7 @@ const ContainerComponent = (props: IProps) => {
     }
 
     const LogOut = () => {
-        context.store.getState().SignReducer = {}
-        setAuth(false)
+        return () => {}
     }
 
     useEffect(() => {
@@ -165,14 +164,14 @@ const ContainerComponent = (props: IProps) => {
         <BrowserRouter>
             {modal === false ?
                 <div className="grid-container">
-                    <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}/>
+                    <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
                     <Sidebar/>
                     <Main/>
                     <Footer/>
                 </div>
                 :
                 <div className="grid-container_modal">
-                    <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut} />
+                    <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
                     <AuthModal data={LoginNdRegister}  modalHandler={ShowModal} />
                 </div>
             }

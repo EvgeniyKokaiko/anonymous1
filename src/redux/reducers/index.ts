@@ -21,6 +21,8 @@ function SignReducer(state = init, action: Dispatcher) {
     if (action.type === redux_types.FetchMe) {
         return action.payload
     } else if (action.type === redux_types.Register) {
+    } else if (action.type === redux_types.LogOut) {
+        return {username: "404 ERROR | DATA NOT FOUND / NOT AUTH"}
     }
 
     return state
