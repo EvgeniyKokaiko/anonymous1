@@ -9,7 +9,7 @@ import {userInfo} from "../interfaces/interface";
 interface IProps {
     modalHandler(val: boolean, c: number): void
     isAuth: boolean
-   LogOut?(): Function
+   LogOut(): Function
     SignReducer?: userInfo
 }
 
@@ -28,7 +28,7 @@ const [modal, setModal] = useState(true)
 
     const renderButtons = () => {
         return ( props?.SignReducer?.login !== undefined ?
-            <button onClick={props?.LogOut} className="ui inverted red button header_button">Log Out</button>
+            <button onClick={() => {props?.LogOut();window.location.href = "/"}} className="ui inverted red button header_button">Log Out</button>
         :
                 <React.Fragment>
                     <button onClick={() => {modalHandler(1);setRender(true)}} className="ui inverted teal button header_button">Sign In</button>
