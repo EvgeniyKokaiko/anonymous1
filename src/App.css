@@ -215,5 +215,54 @@ position: relative;
     width: 30vw;
 }
 
+.video_container {
+    width: 65vw;
+}
+
+
+.video_input {
+
+    width: 49.5vw;
+
+}
+
+.ui.input>input {
+    width: 49.5vw;
+}
+.ui.input>input {
+    max-width: 49.5vw;
+}
+
+.video_button {
+    position: relative;
+    left: 47.5vw;
+    top: 0.8vh;
+}
+.frame_container {
+    width: 49.5vw;
+    height: 100%;
+}
+
+
+h4.ui.header {
+    width: 48vw;
+    background-color: white;
+    color: black;
+    height: 10%;
+}
+
+.frame {
+    width: 49.5vw;
+    height: 50vh;
+    margin-top: 20px;
+}
+
+.videos_thumb {
+
+}
+
+
+
+
 
 

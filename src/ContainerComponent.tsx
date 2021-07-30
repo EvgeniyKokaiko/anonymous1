@@ -52,7 +52,7 @@ const ContainerComponent = (props: IProps) => {
     const [surname, setSurname] = useState("")
     const [isAuth, setAuth] = useState(false);
 
-    const ShowModal = (val: boolean, c: number):void => {
+    const ShowModal = (val: boolean, c: number):void =>  {
        showModal(prev => !prev)
        setCreator(c)
     }

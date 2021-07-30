@@ -7,9 +7,9 @@ import MyFriends from "./Main/MyFriends";
 import Groups from "./Main/Groups";
 import Photos from "./Main/Photos";
 import Music from "./Main/Music";
-import Videos from "./Main/Videos";
 import AllUsers from "./Main/AllUsers";
 import UserPage from "./Main/UserPage";
+import Videos from "./Videos/Videos";
 
 
 
