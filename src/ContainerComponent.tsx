@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import {BrowserRouter} from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
@@ -31,14 +31,15 @@ interface IState {
 }
 
 const ContainerComponent = (props: IProps) => {
+
     const context = useContext(ReactReduxContext)
     console.log(context.store.getState().SignReducer[0])
     const [creator, setCreator] = useState(0)
     const [modal, showModal] = useState(false)
-
+    const [handleAuth, setHandle] = useState(false)
     //Auth
-    const [authUsername, setAuthUsername] = useState("")
-    const [authPassword, setAuthPassword] = useState("")
+    let [authUsername, setAuthUsername] = useState("")
+   let [authPassword, setAuthPassword] = useState("")
     const [remember, setRemember] = useState(false)
 
     //Register
@@ -57,29 +58,56 @@ const ContainerComponent = (props: IProps) => {
     }
 
 
+
    const  LoginSubmit = () => {
-        props.Login(authUsername, authPassword);
         console.log(props);
+        if (remember === true) {
+            localStorage.setItem("isAuthAnonym", "true");
+            localStorage.setItem("UserInfoAnonym", JSON.stringify({id: authUsername, password: authPassword}))
+        } else if (remember === false) {
+            localStorage.setItem("isAuthAnonym", JSON.stringify(false));
+            localStorage.setItem("UserInfoAnonym", "{}");
+        }
+       props.Login(authUsername, authPassword);
     }
-
-    const  RegisterSubmit = () => {
-        props.Register(name,surname,email,RegUsername,RegPassword,RegRePassword,RegImage);
-        console.log(props);
+    const isAuthed = () => {
+        const authFlag = JSON.parse(localStorage.getItem("isAuthAnonym") as string);
+        if (authFlag === undefined) localStorage.setItem("isAuthAnonym", JSON.stringify(false))
+        if (authFlag === true) {
+            const data: {id: string, password: string} = JSON.parse(localStorage.getItem("UserInfoAnonym") as string)
+            authUsername = data.id
+            authPassword = data.password
+            console.log(authUsername, authPassword)
+            LoginSubmit()
+        }
     }
-
     const isAuthHandler = () => {
         if (props.SignReducer.login !== undefined) {
             setAuth(true)
         }
     }
 
+    useEffect((): any => {
+        isAuthHandler()
+        isAuthed()
+    }, [])
+
+
+    const  RegisterSubmit = () => {
+        props.Register(name,surname,email,RegUsername,RegPassword,RegRePassword,RegImage);
+        console.log(props);
+    }
+
+
+
+
+
+
     const LogOut = () => {
         return () => {}
     }
 
-    useEffect(() => {
-        isAuthHandler()
-    })
+
 
    const LoginNdRegister = () => {
         if (creator === 1) {

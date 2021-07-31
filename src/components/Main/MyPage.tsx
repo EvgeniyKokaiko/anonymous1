@@ -1,22 +1,21 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Dispatcher, userInfo, userPosts} from "../../interfaces/interface";
 import {connect} from "react-redux";
-import {MyAddPost} from "../../redux/actions";
+import {Login, MyAddPost} from "../../redux/actions";
 import {ChangeUserData} from "../../redux/actions";
-import {Dispatch} from "redux";
+
 
 
 interface IProps {
     SignReducer: userInfo
     ChangeUserData(login: string,about: string, city: string, country: string, userphoto: string):any
     MyAddPost(login: string, editValues: userPosts[]) : any
+    Login(login: string, password: string): any
 }
 
 const MyPage = (props: IProps) => {
     const [isChange, setChange] = useState(false)
-    const User: userInfo = props.SignReducer
-
-
+    let User: userInfo = props.SignReducer
     const [thinks, setThinks] = useState(User?.about);
     const [city, setCity] = useState(User?.city);
     const [country, setCountry] = useState(User?.country);
@@ -30,6 +29,10 @@ const InfoChanger = () => {
             </>
         )
 }
+
+
+
+
 
 const ChangeData = () => {
     setChange(prev=> !prev);
@@ -147,4 +150,4 @@ const mapStateToProps = (state: object) => {
 }
 
 
-export default connect(mapStateToProps , {MyAddPost,ChangeUserData})(MyPage)
+export default connect(mapStateToProps , {MyAddPost, ChangeUserData, Login})(MyPage)

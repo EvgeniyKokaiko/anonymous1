@@ -19,6 +19,7 @@ try {
 
     if (password === pass && response.data.login === login) {
         dispatch({ type: redux_types.FetchMe, payload: response.data });
+        console.log(response.data)
     }
     } catch (e) {
     console.log("Bebra");
@@ -43,7 +44,7 @@ export const Register = (name: string, surname: string, email: string, login: st
         videos: 0,
         id: login,
         isAdmin: false,
-        posts: []
+        postss: []
     ,
         friendList: []
     })
@@ -57,10 +58,11 @@ export const MyAddPost = (login: string,editValues: userPosts[]) => async (dispa
 
     const response = await axios.patch(`http://localhost:3001/users/${login}`, {posts: editValues})
 
-    dispatch({type: redux_types.MeAddPost, payload: response.data})
+    dispatch({type: redux_types.MeAddPost, payload: [response.data]})
 }
 
 export const LogOut = () => {
+    localStorage.setItem("isAuthAnonym", JSON.stringify(false))
     return {
         type: redux_types.LogOut,
     }
