@@ -13,17 +13,20 @@ export const fetchUsers = () => async (dispatch: Dispatch<Dispatcher>) => {
 
 
 export const Login = (login: string, pass: string) => async (dispatch: Dispatch<Dispatcher>) => {
-try {
-    const response = await axios.get(`http://localhost:3001/users/${login}`)
-    const password = response.data.password;
 
-    if (password === pass && response.data.login === login) {
-        dispatch({ type: redux_types.FetchMe, payload: response.data });
-        console.log(response.data)
-    }
-    } catch (e) {
+    const response = await axios.get(`http://localhost:3001/users/${login}`).then(el => {
+        const password = el.data.password;
+        if (password === pass && el.data.login === login) {
+            dispatch({ type: redux_types.FetchMe, payload: el.data });
+            console.log(el.data)
+        }
+    })
+
+
+
+
     console.log("Bebra");
-}
+
 }
 
 export const Register = (name: string, surname: string, email: string, login: string, password: string, re_password: string, image: string) => async (dispatch: Dispatch<Dispatcher>) => {
@@ -58,7 +61,7 @@ export const MyAddPost = (login: string,editValues: userPosts[]) => async (dispa
 
     const response = await axios.patch(`http://localhost:3001/users/${login}`, {posts: editValues})
 
-    dispatch({type: redux_types.MeAddPost, payload: [response.data]})
+    dispatch({type: redux_types.MeAddPost, payload: response.data})
 }
 
 export const LogOut = () => {

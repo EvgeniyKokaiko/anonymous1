@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Dispatcher, userInfo, userPosts} from "../../interfaces/interface";
 import {connect} from "react-redux";
 import {Login, MyAddPost} from "../../redux/actions";
 import {ChangeUserData} from "../../redux/actions";
+import Context from "../Context/Context";
 
 
 
@@ -14,6 +15,8 @@ interface IProps {
 }
 
 const MyPage = (props: IProps) => {
+    const context = useContext(Context)
+
     const [isChange, setChange] = useState(false)
     let User: userInfo = props.SignReducer
     const [thinks, setThinks] = useState(User?.about);
@@ -47,7 +50,7 @@ const ChangeData = () => {
         const random = Math.random()
         const value = postVal === "" ? "Anonymous" : postVal
         setRerender([...rerender, {id:random, value: value, date: DateParser()}])
-       props.MyAddPost(props.SignReducer.id, [...User.posts, {id:random, value: value, date: DateParser()}])
+       props.MyAddPost(props.SignReducer.id, [...User?.posts, {id:random, value: value, date: DateParser()}])
         console.log(rerender)
         console.log(User.posts)
     }
@@ -55,8 +58,10 @@ const ChangeData = () => {
 
 
 const RenderPosts = () => {
-        User.posts = rerender
-        console.log(User.posts)
+        console.log(User.posts, context)
+    if (rerender === undefined) {
+        setRerender(context)
+    }
        return User?.posts?.map(el => {
             return (
                 <div key={el.id} className="ui comments">
@@ -111,7 +116,7 @@ let [postVal, setPostVal] = useState("")
                 <hr/>
                     {isChange === false ?<h4>My city: {User?.city}</h4> : <input onChange={e => setCity(e.target.value)} value={city} type="text" placeholder="Change City"/>}
                     {isChange === false ? <h4>My country: {User?.country}</h4> : <input onChange={e => setCountry(e.target.value)} value={country} type="text" placeholder="Change Country"/>}
-                    <div className="ui buttons">
+                    <div className="ui buttons flexible">
                         <button className="ui button">Friends: {User?.friends}</button>
                         <button className="ui button">Subscribers: {User?.subscribers}</button>
                         <button className="ui button">Photos: {User?.photos}</button>

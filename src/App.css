@@ -294,6 +294,10 @@ position: relative;
 }
 
 
+.ui.buttons {
+    flex-wrap: wrap;
+}
+
 
 
 

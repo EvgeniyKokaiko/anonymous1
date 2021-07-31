@@ -8,6 +8,8 @@ import AuthModal from "./components/AuthModal";
 import {connect, ReactReduxContext, ReactReduxContextValue} from "react-redux";
 import {Login, Register} from "./redux/actions";
 import {userInfo} from "./interfaces/interface";
+import axios from "axios";
+import Context from "./components/Context/Context";
 
 
 
@@ -41,6 +43,7 @@ const ContainerComponent = (props: IProps) => {
     let [authUsername, setAuthUsername] = useState("")
    let [authPassword, setAuthPassword] = useState("")
     const [remember, setRemember] = useState(false)
+    const [userPost, setUserPosts] = useState([])
 
     //Register
     const [email, setEmail] = useState("");
@@ -78,7 +81,10 @@ const ContainerComponent = (props: IProps) => {
             authUsername = data.id
             authPassword = data.password
             console.log(authUsername, authPassword)
-            LoginSubmit()
+            props.Login(data.id, data.password)
+            const response = axios.get(`http://localhost:3001/users/${data.id}`).then(el => {
+              setUserPosts(el.data.posts)
+            })
         }
     }
     const isAuthHandler = () => {
@@ -194,8 +200,10 @@ const ContainerComponent = (props: IProps) => {
                 <div className="grid-container">
                     <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
                     <Sidebar/>
-                    <Main/>
-                    <Footer/>
+                    <Context.Provider value={userPost}>
+                        <Main/>
+                    </Context.Provider>
+                        <Footer/>
                 </div>
                 :
                 <div className="grid-container_modal">
