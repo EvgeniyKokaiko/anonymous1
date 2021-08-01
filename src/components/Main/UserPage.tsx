@@ -1,24 +1,25 @@
 import React, {useEffect, useState} from "react";
-import {userInfo} from "../../interfaces/interface";
+import {userInfo, userPosts} from "../../interfaces/interface";
 import {connect} from "react-redux";
-import {match, RouteComponentProps} from "react-router-dom";
 import axios from "axios";
+import {AddSubscribers} from "../../redux/actions";
 
 
 interface IProps {
     SignReducer: userInfo
     match: any
+    AddSubscribers(login: string, subscriber: string, sublist: string[], subscribersCount: number): any
 }
 
 const UserPage = (props: IProps) => {
 
     const User: userInfo = props.match.params.id
-    const [data, setData]: [any, Function] = useState([])
-    const Me : userInfo = props.SignReducer
+    const UserId: string = props.match.params.id
+    const [data, setData]: [userInfo, Function] = useState({login: "", password: "", userphoto: "", name: "", about: "", surname: "", city: "", country: "", email: "", friends: 0, subscribers: 0, photos: 0, videos: 0, id: "", isAdmin: false, posts: [], friendList: [], subscriberList: []})
     console.log(User)
 
     const fetchUser = async () => {
-        const response = await axios.get(`http://localhost:3001/users/${User}`).then(el => {
+       await axios.get(`http://localhost:3001/users/${User}`).then(el => {
             setData(el.data);
             console.log(data)
         })
@@ -34,7 +35,7 @@ const UserPage = (props: IProps) => {
         const value = postVal === "" ? "Anonymous" : postVal
         setRerender([...rerender, {id:random, value: value, date: DateParser()}])
         console.log(rerender)
-        console.log(User.posts)
+
     }
 
 
@@ -78,10 +79,17 @@ const UserPage = (props: IProps) => {
 
     let [postVal, setPostVal] = useState("")
 
+
+    const AddToSubscribers = () => {
+        const Me = JSON.parse(localStorage.getItem("MyId") as string)
+        props.AddSubscribers(UserId, Me, data.subscriberList, data.subscribers)
+    }
+
+
     const AddFriend = () => {
         return (
             <>
-                <button className="ui inverted violet button">Add Friend</button>
+                <button onClick={AddToSubscribers} className="ui inverted violet button">Add Friend</button>
             </>
         )
     }
@@ -142,4 +150,4 @@ const mapStateToProps = (state: object) => {
 }
 
 
-export default connect(mapStateToProps , {})(UserPage)
+export default connect(mapStateToProps , {AddSubscribers})(UserPage)

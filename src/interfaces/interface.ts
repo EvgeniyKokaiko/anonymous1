@@ -1,6 +1,6 @@
 export interface userInfo {
-    login: string,
-    password: string
+    login?: string,
+    password?: string
     userphoto: string
     name: string,
     about: string,
@@ -16,6 +16,7 @@ export interface userInfo {
     isAdmin: boolean,
     posts: userPosts[],
     friendList: string[]
+    subscriberList: string[]
 }
 
 

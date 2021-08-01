@@ -111,7 +111,8 @@ let [postVal, setPostVal] = useState("")
             <div className="user_information">
                 <div className="ui segment black">
                     <h2>{User?.name} {User?.surname}</h2>
-                    {isChange === false ? <h3>Thinks: {User?.about}</h3>: <input onChange={e => setThinks(e.target.value)} value={thinks} type="text" placeholder="Change Thinks"/>}
+                    {isChange === false ? <h3>{User?.about}</h3>: <input onChange={e => setThinks(e.target.value)} value={thinks} type="text" placeholder="Change Thinks"/>}
+                    <hr/>
                     <h3>{InfoChanger()}</h3>
                 <hr/>
                     {isChange === false ?<h4>My city: {User?.city}</h4> : <input onChange={e => setCity(e.target.value)} value={city} type="text" placeholder="Change City"/>}

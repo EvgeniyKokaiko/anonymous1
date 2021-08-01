@@ -44,10 +44,33 @@ function MeChangeDataReducer(state = "", action: Dispatcher) {
 }
 
 
+function AddSubscribersReducer(state = {}, action: Dispatcher) {
+    if (action.type === redux_types.AddSub) {
+        return action.payload
+    }
+
+    return state
+}
+
+function getFriendsReducer(state = [], action: Dispatcher) {
+    if (action.type === redux_types.getFriends) {
+        return action.payload
+    }
+    return state
+}
+function getSubReducer(state = [], action: Dispatcher) {
+    if (action.type === redux_types.getSubs) {
+        return action.payload
+    }
+    return state
+}
 
 export default combineReducers({
     UserReducer,
     SignReducer,
     MeAddPostReducer,
-    MeChangeDataReducer
+    MeChangeDataReducer,
+    AddSubscribersReducer,
+    getFriendsReducer,
+    getSubReducer
 })

@@ -3,17 +3,17 @@
     {
       "login": "re1nhart",
       "password": "1488",
-      "userphoto": "http://images.shoutwiki.com/ytp/9/97/%D0%A0%D0%B8%D0%BA%D0%B0%D1%80%D0%B4%D0%BE_%D0%9C%D0%B8%D0%BB%D0%BE%D1%81.jpg",
+      "userphoto": "https://steamuserimages-a.akamaihd.net/ugc/787497987679529464/E877A1FF9945D9F70E006E9C94F3A4679E51166F/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
       "name": "Evgeniy",
       "about": "bored.",
       "surname": "Kokaiko",
       "city": "Detroit",
       "country": "USA",
       "email": "eugene.kokaiko@gmail.com",
-      "friends": 200,
-      "subscribers": 500,
-      "photos": 136,
-      "videos": 151,
+      "friends": 0,
+      "subscribers": 0,
+      "photos": 0,
+      "videos": 0,
       "id": "re1nhart",
       "isAdmin": true,
       "posts": [
@@ -58,7 +58,8 @@
           "date": "2021/7/31"
         }
       ],
-      "friendList": []
+      "friendList": [],
+      "subscriberList": []
     },
     {
       "login": "keker54",
@@ -85,7 +86,8 @@
       ],
       "friendList": [
         {}
-      ]
+      ],
+      "subscriberList": []
     },
     {
       "login": "kris54",
@@ -98,7 +100,7 @@
       "country": "",
       "email": "kris@mail.com",
       "friends": 0,
-      "subscribers": 0,
+      "subscribers": 3,
       "photos": 0,
       "videos": 0,
       "id": "kris54",
@@ -112,6 +114,11 @@
       ],
       "friendList": [
         {}
+      ],
+      "subscriberList": [
+        "re1nhart",
+        "cyberiden",
+        "keker54"
       ]
     },
     {
@@ -149,7 +156,8 @@
       ],
       "friendList": [
         {}
-      ]
+      ],
+      "subscriberList": []
     },
     {
       "login": "zulul4",
@@ -179,7 +187,8 @@
           "date": "2021/7/30"
         }
       ],
-      "friendList": []
+      "friendList": [],
+      "subscriberList": []
     },
     {
       "login": "myro1",
@@ -198,7 +207,8 @@
       "id": "myro1",
       "isAdmin": false,
       "posts": [],
-      "friendList": []
+      "friendList": [],
+      "subscriberList": []
     }
   ]
 }

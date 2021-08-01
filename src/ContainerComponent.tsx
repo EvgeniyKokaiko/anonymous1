@@ -61,7 +61,6 @@ const ContainerComponent = (props: IProps) => {
     }
 
 
-
    const  LoginSubmit = () => {
         console.log(props);
         if (remember === true) {
@@ -77,12 +76,12 @@ const ContainerComponent = (props: IProps) => {
         const authFlag = JSON.parse(localStorage.getItem("isAuthAnonym") as string);
         if (authFlag === undefined) localStorage.setItem("isAuthAnonym", JSON.stringify(false))
         if (authFlag === true) {
-            const data: {id: string, password: string} = JSON.parse(localStorage.getItem("UserInfoAnonym") as string)
-            authUsername = data.id
-            authPassword = data.password
-            console.log(authUsername, authPassword)
-            props.Login(data.id, data.password)
-            const response = axios.get(`http://localhost:3001/users/${data.id}`).then(el => {
+            const data: {id: string, password: string} = JSON.parse(localStorage.getItem("UserInfoAnonym") as string);
+            authUsername = data.id;
+            authPassword = data.password;
+            console.log(authUsername, authPassword);
+            props.Login(data.id, data.password);
+            axios.get(`http://localhost:3001/users/${data.id}`).then(el => {
               setUserPosts(el.data.posts)
             })
         }
@@ -98,23 +97,14 @@ const ContainerComponent = (props: IProps) => {
         isAuthed()
     }, [])
 
-
     const  RegisterSubmit = () => {
         props.Register(name,surname,email,RegUsername,RegPassword,RegRePassword,RegImage);
         console.log(props);
     }
 
-
-
-
-
-
     const LogOut = () => {
         return () => {}
     }
-
-
-
    const LoginNdRegister = () => {
         if (creator === 1) {
             return (
