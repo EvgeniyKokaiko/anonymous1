@@ -6,6 +6,7 @@ export enum redux_types {
     LogOut = "LOG_OUT",
     ChangeMyData = "CHANGE_USER_DATA",
     AddSub = "ADD_TO_SUBSCRIBERS",
+    AddFriend = "ADD_TO_FRIENDS",
     getFriends = "GET_MY_FRIENDS",
-    getSubs = "GET_MY_SUBSCRIBERS"
+    getSubs = "GET_MY_SUBSCRIBERS",
 }

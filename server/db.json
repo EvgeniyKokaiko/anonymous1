@@ -84,9 +84,7 @@
           "date": "Today"
         }
       ],
-      "friendList": [
-        {}
-      ],
+      "friendList": [],
       "subscriberList": []
     },
     {
@@ -99,8 +97,8 @@
       "city": "",
       "country": "",
       "email": "kris@mail.com",
-      "friends": 0,
-      "subscribers": 3,
+      "friends": 3,
+      "subscribers": 0,
       "photos": 0,
       "videos": 0,
       "id": "kris54",
@@ -113,13 +111,11 @@
         }
       ],
       "friendList": [
-        {}
-      ],
-      "subscriberList": [
-        "re1nhart",
         "cyberiden",
-        "keker54"
-      ]
+        "keker54",
+        "re1nhart"
+      ],
+      "subscriberList": []
     },
     {
       "login": "cyberiden",
@@ -154,9 +150,7 @@
           "date": "2021/7/31"
         }
       ],
-      "friendList": [
-        {}
-      ],
+      "friendList": [],
       "subscriberList": []
     },
     {

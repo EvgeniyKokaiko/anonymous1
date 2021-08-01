@@ -104,7 +104,8 @@ export const AddSubscribers = (login: string, subscriber: string, sublist: strin
 
 export const MyFriendList = (userArray: string[] = []) => async (dispatch: Dispatch<Dispatcher>)  => {
     const data: userInfo[] = [];
-    for (let i = 0;i < userArray.length; i++) {
+    const paginator = userArray.length < 10 ? userArray.length : 10
+    for (let i = 0;i < paginator; i++) {
     const response = await axios.get(`http://localhost:3001/users/${userArray[i]}`)
             data.push(response.data)
     }
@@ -122,3 +123,18 @@ export const MySubList = (userArray: string[] = []) => async (dispatch: Dispatch
 
     dispatch({type:redux_types.getSubs, payload: data})
 }
+
+
+export const AddFriend = (login: string ,subscriber: string, sublist: string[], friendList: string[],subscribersCount: number, friendsCount: number) => async (dispatch: Dispatch<Dispatcher>) => {
+
+    const response = await axios.patch(`http://localhost:3001/users/${login}`, {
+        subscriberList: sublist.filter(el => el !== subscriber),
+        subscribers: subscribersCount - 1,
+        friendList: [...friendList, subscriber],
+        friends: friendsCount + 1
+    })
+
+    dispatch({type: redux_types.AddFriend, payload: response.data})
+}
+
+

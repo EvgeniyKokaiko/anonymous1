@@ -65,6 +65,14 @@ function getSubReducer(state = [], action: Dispatcher) {
     return state
 }
 
+function AddFriendsReducer(state = {}, action: Dispatcher) {
+    if (action.type === redux_types.AddFriend) {
+        return action.payload
+    }
+
+    return state
+}
+
 export default combineReducers({
     UserReducer,
     SignReducer,
@@ -72,5 +80,6 @@ export default combineReducers({
     MeChangeDataReducer,
     AddSubscribersReducer,
     getFriendsReducer,
-    getSubReducer
+    getSubReducer,
+    AddFriendsReducer
 })
