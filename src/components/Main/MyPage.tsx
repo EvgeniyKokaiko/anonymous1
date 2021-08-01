@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Login, MyAddPost} from "../../redux/actions";
 import {ChangeUserData} from "../../redux/actions";
 import Context from "../Context/Context";
+import { Link } from "react-router-dom";
 
 
 
@@ -118,8 +119,8 @@ let [postVal, setPostVal] = useState("")
                     {isChange === false ?<h4>My city: {User?.city}</h4> : <input onChange={e => setCity(e.target.value)} value={city} type="text" placeholder="Change City"/>}
                     {isChange === false ? <h4>My country: {User?.country}</h4> : <input onChange={e => setCountry(e.target.value)} value={country} type="text" placeholder="Change Country"/>}
                     <div className="ui buttons flexible">
-                        <button className="ui button">Friends: {User?.friends}</button>
-                        <button className="ui button">Subscribers: {User?.subscribers}</button>
+                        <Link to="/Friends" className="ui button">Friends: {User?.friends}</Link>
+                        <Link to="/Friends" className="ui button">Subscribers: {User?.subscribers}</Link>
                         <button className="ui button">Photos: {User?.photos}</button>
                         <button className="ui button">Videos: {User?.videos}</button>
                     </div>

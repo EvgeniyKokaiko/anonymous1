@@ -10,7 +10,7 @@
       "city": "Detroit",
       "country": "USA",
       "email": "eugene.kokaiko@gmail.com",
-      "friends": 0,
+      "friends": 1,
       "subscribers": 0,
       "photos": 0,
       "videos": 0,
@@ -58,7 +58,9 @@
           "date": "2021/7/31"
         }
       ],
-      "friendList": [],
+      "friendList": [
+        "keker54"
+      ],
       "subscriberList": []
     },
     {
@@ -71,7 +73,7 @@
       "city": "",
       "country": "",
       "email": "olegEshkere@mail.ru",
-      "friends": 0,
+      "friends": 1,
       "subscribers": 0,
       "photos": 0,
       "videos": 0,
@@ -84,7 +86,9 @@
           "date": "Today"
         }
       ],
-      "friendList": [],
+      "friendList": [
+        "re1nhart"
+      ],
       "subscriberList": []
     },
     {
@@ -128,7 +132,7 @@
       "country": "",
       "email": "cyberiden@gmail.com",
       "friends": 0,
-      "subscribers": 0,
+      "subscribers": 1,
       "photos": 0,
       "videos": 0,
       "id": "cyberiden",
@@ -151,7 +155,9 @@
         }
       ],
       "friendList": [],
-      "subscriberList": []
+      "subscriberList": [
+        "re1nhart"
+      ]
     },
     {
       "login": "zulul4",
@@ -163,8 +169,8 @@
       "city": "",
       "country": "",
       "email": "hubkabob5@ukr.net",
-      "friends": 0,
-      "subscribers": 0,
+      "friends": 1,
+      "subscribers": 1,
       "photos": 0,
       "videos": 0,
       "id": "zulul4",
@@ -181,8 +187,12 @@
           "date": "2021/7/30"
         }
       ],
-      "friendList": [],
-      "subscriberList": []
+      "friendList": [
+        "kris54"
+      ],
+      "subscriberList": [
+        "re1nhart"
+      ]
     },
     {
       "login": "myro1",

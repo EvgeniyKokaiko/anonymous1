@@ -19,9 +19,7 @@ const MyFriends = (props: IProps) => {
 
     const {friendList, friends, subscriberList, subscribers} = props.SignReducer
     console.log(friendList, friends, subscriberList, subscribers)
-    const [subscriber, setSubscribers] = useState([])
-    const [friend, setFriends] = useState([])
-    const [list, setList] = useState(false)
+    const [list, setList] = useState(true)
     const subData: userInfo[] = props.getSubReducer
     const friendsData: userInfo[] = props.getFriendsReducer
 

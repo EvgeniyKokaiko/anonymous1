@@ -134,6 +134,17 @@ export const AddFriend = (login: string ,subscriber: string, sublist: string[], 
         friends: friendsCount + 1
     })
 
+        const res = await axios.get(`http://localhost:3001/users/${subscriber}`)
+        let data: userInfo = res.data
+        delete data.login
+        delete data.password
+    console.log("da")
+        const response2 = await axios.patch(`http://localhost:3001/users/${subscriber}`, {
+            friendList: [...data.friendList, login],
+            friends: data.friends + 1
+        })
+
+
     dispatch({type: redux_types.AddFriend, payload: response.data})
 }
 
