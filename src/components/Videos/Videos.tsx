@@ -21,18 +21,10 @@ const Videos = (): JSX.Element => {
             console.log(videos)
         })
     }
-
-
         const onButtonSearch = () => {
             onTermSubmit()
             console.log(videos, current, 125234523)
         }
-
-
-
-
-
-
 
     const renderFrame = () => {
         let videoSrc = `https://www.youtube.com/embed/${current?.id?.videoId}`
@@ -42,7 +34,6 @@ const Videos = (): JSX.Element => {
                 <span>Loading...</span>
             )
         }
-
             return (
                 <div className="frame_container">
                     <iframe title="video player" src={videoSrc} className="frame"/>
@@ -74,10 +65,6 @@ const Videos = (): JSX.Element => {
         })
 
     }
-
-
-
-
         return (
             <div className="video_container">
                 <div className="ui icon input video_input" style={{width: "100%", gridColumnStart: "1", gridColumnEnd: "3"}}>

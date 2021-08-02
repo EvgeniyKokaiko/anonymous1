@@ -58,6 +58,14 @@ function getFriendsReducer(state = [], action: Dispatcher) {
     }
     return state
 }
+
+function getUserFriendsReducer(state = [], action: Dispatcher) {
+    if (action.type === redux_types.getUserFriends) {
+        return action.payload
+    }
+    return state
+}
+
 function getSubReducer(state = [], action: Dispatcher) {
     if (action.type === redux_types.getSubs) {
         return action.payload
@@ -81,5 +89,6 @@ export default combineReducers({
     AddSubscribersReducer,
     getFriendsReducer,
     getSubReducer,
-    AddFriendsReducer
+    AddFriendsReducer,
+    getUserFriendsReducer
 })

@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {Dispatcher, userInfo, userPosts} from "../../interfaces/interface";
 import {connect} from "react-redux";
-import {Login, MyAddPost} from "../../redux/actions";
+import {Login, MyAddPost, MyFriendList} from "../../redux/actions";
 import {ChangeUserData} from "../../redux/actions";
 import Context from "../Context/Context";
 import { Link } from "react-router-dom";
@@ -12,12 +12,16 @@ interface IProps {
     SignReducer: userInfo
     ChangeUserData(login: string,about: string, city: string, country: string, userphoto: string):any
     MyAddPost(login: string, editValues: userPosts[]) : any
+    MyFriendList(friendId: string[]): any
     Login(login: string, password: string): any
+    getFriendsReducer: userInfo[]
+
 }
 
 const MyPage = (props: IProps) => {
     const context = useContext(Context)
-
+    const friends: userInfo[] = props.getFriendsReducer
+    console.log(props)
     const [isChange, setChange] = useState(false)
     let User: userInfo = props.SignReducer
     const [thinks, setThinks] = useState(User?.about);
@@ -26,12 +30,45 @@ const MyPage = (props: IProps) => {
     const [photo, changePhoto] = useState(User?.userphoto);
 
 
+    useEffect(() => {
+        getFriends()
+    }, [props.SignReducer])
+
+    const getFriends =  () => {
+        if (User.friendList === undefined) {
+
+        }
+        props.MyFriendList(User.friendList)
+    }
+
 const InfoChanger = () => {
         return (
             <>
                 <button onClick={ChangeData} className="ui inverted violet button">Change</button>
             </>
         )
+}
+
+
+const RenderFriends = () => {
+        return friends.map<JSX.Element>(el => {
+            return (
+                <div className="friendList_miniature">
+                <div key={el.id}  className="item">
+                    <Link  to={`/user_profile/${el.id}`}>
+                    <img
+                        alt="fas"
+                        className="friendList_photo"
+                        src={el.userphoto}
+                    />
+                    </Link>
+                    <div className="content">
+                        <div className="header thumb_header">{el.name} {el.surname}</div>
+                    </div>
+                </div>
+                </div>
+            )
+        })
 }
 
 
@@ -71,7 +108,7 @@ const RenderPosts = () => {
                             <img className="avatar_img" src={User?.userphoto} alt="UserPhoto" />
                         </span>
                         <div className="content">
-                            <span className="author">{User?.name}{User?.surname}</span>
+                            <span className="author">{User?.name} {User?.surname}</span>
                             <div className="metadata">
                                 <div className="date">{el.date}</div>
                             </div>
@@ -144,9 +181,7 @@ let [postVal, setPostVal] = useState("")
             </div>
 
             <div className="user_friends">
-                <div className="ui segment">
-
-            </div>
+                    {RenderFriends()}
             </div>
         </div>
     )
@@ -157,4 +192,4 @@ const mapStateToProps = (state: object) => {
 }
 
 
-export default connect(mapStateToProps , {MyAddPost, ChangeUserData, Login})(MyPage)
+export default connect(mapStateToProps , {MyAddPost, ChangeUserData, Login, MyFriendList})(MyPage)

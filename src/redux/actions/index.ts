@@ -16,20 +16,18 @@ export const fetchUsers = () => async (dispatch: Dispatch<Dispatcher>) => {
 
 
 export const Login = (login: string, pass: string) => async (dispatch: Dispatch<Dispatcher>) => {
-
+try {
     const response = await axios.get(`http://localhost:3001/users/${login}`).then(el => {
         const password = el.data.password;
         if (password === pass && el.data.login === login) {
-            dispatch({ type: redux_types.FetchMe, payload: el.data });
+            dispatch({type: redux_types.FetchMe, payload: el.data});
             console.log(el.data)
             localStorage.setItem("MyId", JSON.stringify(el.data.login))
         }
     })
-
-
-
-
+} catch (e) {
     console.log("Bebra");
+}
 
 }
 
@@ -63,9 +61,7 @@ export const Register = (name: string, surname: string, email: string, login: st
 
 
 export const MyAddPost = (login: string,editValues: userPosts[]) => async (dispatch: Dispatch<Dispatcher>) => {
-
     const response = await axios.patch(`http://localhost:3001/users/${login}`, {posts: editValues})
-
     dispatch({type: redux_types.MeAddPost, payload: response.data})
 }
 
@@ -79,7 +75,6 @@ export const LogOut = () => {
 
 
 export const ChangeUserData = (login: string, about: string, city: string, country: string, userphoto: string) => async (dispatch: Dispatch<Dispatcher>) => {
-
     const response = await axios.patch(`http://localhost:3001/users/${login}`, {
         about: about,
         city: city,
@@ -91,12 +86,10 @@ export const ChangeUserData = (login: string, about: string, city: string, count
 
 
 export const AddSubscribers = (login: string, subscriber: string, sublist: string[], subscribersCount: number) => async (dispatch:Dispatch<Dispatcher>) => {
-
     const response = await axios.patch(`http://localhost:3001/users/${login}`, {
         subscriberList: [...sublist, subscriber],
         subscribers: subscribersCount + 1
     })
-
     dispatch({type: redux_types.AddSub, payload: response.data})
 
 }
@@ -104,13 +97,24 @@ export const AddSubscribers = (login: string, subscriber: string, sublist: strin
 
 export const MyFriendList = (userArray: string[] = []) => async (dispatch: Dispatch<Dispatcher>)  => {
     const data: userInfo[] = [];
-    const paginator = userArray.length < 10 ? userArray.length : 10
+    const paginator = userArray.length < 8 ? userArray.length : 8
     for (let i = 0;i < paginator; i++) {
     const response = await axios.get(`http://localhost:3001/users/${userArray[i]}`)
             data.push(response.data)
     }
    dispatch({type:redux_types.getFriends, payload: data})
 }
+
+export const UserFriendList = (userArray: string[] = []) => async (dispatch: Dispatch<Dispatcher>)  => {
+    const data: userInfo[] = [];
+    const paginator = userArray.length < 8 ? userArray.length : 8
+    for (let i = 0;i < paginator; i++) {
+        const response = await axios.get(`http://localhost:3001/users/${userArray[i]}`)
+        data.push(response.data)
+    }
+    dispatch({type:redux_types.getUserFriends, payload: data})
+}
+
 
 export const MySubList = (userArray: string[] = []) => async (dispatch: Dispatch<Dispatcher>)  => {
     const data: userInfo[] = [];
@@ -120,31 +124,25 @@ export const MySubList = (userArray: string[] = []) => async (dispatch: Dispatch
         delete response.data.password
         data.push(response.data)
     }
-
     dispatch({type:redux_types.getSubs, payload: data})
 }
 
 
 export const AddFriend = (login: string ,subscriber: string, sublist: string[], friendList: string[],subscribersCount: number, friendsCount: number) => async (dispatch: Dispatch<Dispatcher>) => {
-
     const response = await axios.patch(`http://localhost:3001/users/${login}`, {
         subscriberList: sublist.filter(el => el !== subscriber),
         subscribers: subscribersCount - 1,
         friendList: [...friendList, subscriber],
         friends: friendsCount + 1
     })
-
         const res = await axios.get(`http://localhost:3001/users/${subscriber}`)
         let data: userInfo = res.data
         delete data.login
         delete data.password
-    console.log("da")
         const response2 = await axios.patch(`http://localhost:3001/users/${subscriber}`, {
             friendList: [...data.friendList, login],
             friends: data.friends + 1
         })
-
-
     dispatch({type: redux_types.AddFriend, payload: response.data})
 }
 

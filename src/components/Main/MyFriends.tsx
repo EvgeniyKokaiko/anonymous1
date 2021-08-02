@@ -87,7 +87,7 @@ const MyFriends = (props: IProps) => {
             }} className="ui inverted brown button">Friends {friendsData.length}</button>
             <button  onClick={() => {
                 setList(false);
-            }} className="ui inverted yellow button">Subscribers {subData.length}</button>
+            }} style={{float: "right"}} className="ui inverted yellow button">Subscribers {subData.length}</button>
             {renderSubList()}
         </div>
     )

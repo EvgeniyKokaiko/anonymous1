@@ -3,14 +3,14 @@
     {
       "login": "re1nhart",
       "password": "1488",
-      "userphoto": "https://steamuserimages-a.akamaihd.net/ugc/787497987679529464/E877A1FF9945D9F70E006E9C94F3A4679E51166F/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
+      "userphoto": "https://pbs.twimg.com/media/EdPP5qAWAAMhA7r.jpg",
       "name": "Evgeniy",
       "about": "bored.",
       "surname": "Kokaiko",
       "city": "Detroit",
       "country": "USA",
       "email": "eugene.kokaiko@gmail.com",
-      "friends": 1,
+      "friends": 3,
       "subscribers": 0,
       "photos": 0,
       "videos": 0,
@@ -59,19 +59,21 @@
         }
       ],
       "friendList": [
-        "keker54"
+        "keker54",
+        "myro1",
+        "cyberiden"
       ],
       "subscriberList": []
     },
     {
       "login": "keker54",
       "password": "13",
-      "userphoto": "https://lastfm.freetls.fastly.net/i/u/ar0/95e5b1c71b4564eae07947cce9cffff0.jpg",
+      "userphoto": "https://preview.redd.it/iifv3gey36i61.jpg?width=960&format=pjpg&auto=webp&s=3699cad7d1220819898b8200c010ba4622f3ca64",
       "name": "Oleg",
-      "about": "",
+      "about": " Я хочу піццу",
       "surname": "Mavromati",
-      "city": "",
-      "country": "",
+      "city": "Донбасс",
+      "country": "Україна",
       "email": "olegEshkere@mail.ru",
       "friends": 1,
       "subscribers": 0,
@@ -84,6 +86,11 @@
           "id": 1,
           "value": "Hello Anonymous Community",
           "date": "Today"
+        },
+        {
+          "id": 0.9593091855977904,
+          "value": "Throw Me Some Numbers",
+          "date": "2021/8/2"
         }
       ],
       "friendList": [
@@ -131,7 +138,7 @@
       "city": "",
       "country": "",
       "email": "cyberiden@gmail.com",
-      "friends": 0,
+      "friends": 1,
       "subscribers": 1,
       "photos": 0,
       "videos": 0,
@@ -154,10 +161,10 @@
           "date": "2021/7/31"
         }
       ],
-      "friendList": [],
-      "subscriberList": [
+      "friendList": [
         "re1nhart"
-      ]
+      ],
+      "subscriberList": []
     },
     {
       "login": "zulul4",
@@ -204,14 +211,16 @@
       "city": "",
       "country": "",
       "email": "hubkabob6@ukr.net",
-      "friends": 0,
+      "friends": 1,
       "subscribers": 0,
       "photos": 0,
       "videos": 0,
       "id": "myro1",
       "isAdmin": false,
       "posts": [],
-      "friendList": [],
+      "friendList": [
+        "re1nhart"
+      ],
       "subscriberList": []
     }
   ]

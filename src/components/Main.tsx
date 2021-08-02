@@ -5,7 +5,7 @@ import News from "./Main/News";
 import Messages from "./Main/Messages";
 import MyFriends from "./Main/MyFriends";
 import Groups from "./Main/Groups";
-import Photos from "./Main/Photos";
+import Photos from "./Photos/Photos";
 import Music from "./Main/Music";
 import AllUsers from "./Main/AllUsers";
 import UserPage from "./Main/UserPage";

@@ -2,22 +2,26 @@ import React, {useEffect, useState} from "react";
 import {userInfo, userPosts} from "../../interfaces/interface";
 import {connect} from "react-redux";
 import axios from "axios";
-import {AddSubscribers} from "../../redux/actions";
+import {AddSubscribers, MyFriendList, UserFriendList} from "../../redux/actions";
+import {Link} from "react-router-dom";
 
 
 interface IProps {
     SignReducer: userInfo
     match: any
     AddSubscribers(login: string, subscriber: string, sublist: string[], subscribersCount: number): any
+    MyFriendList(friendId: string[]): any
+    UserFriendList(friendId: string[]): any
+    getUserFriendsReducer: userInfo[]
 }
 
 const UserPage = (props: IProps) => {
 
     const User: userInfo = props.match.params.id
     const UserId: string = props.match.params.id
+    const friends: userInfo[] = props.getUserFriendsReducer
     const [data, setData]: [userInfo, Function] = useState({login: "", password: "", userphoto: "", name: "", about: "", surname: "", city: "", country: "", email: "", friends: 0, subscribers: 0, photos: 0, videos: 0, id: "", isAdmin: false, posts: [], friendList: [], subscriberList: []})
-    console.log(User)
-
+    console.log(props)
     const fetchUser = async () => {
        await axios.get(`http://localhost:3001/users/${User}`).then(el => {
             setData(el.data);
@@ -38,6 +42,9 @@ const UserPage = (props: IProps) => {
 
     }
 
+    // const RenderImages = () => {
+    //     return
+    // }
 
 
     const RenderPosts = () => {
@@ -85,13 +92,49 @@ const UserPage = (props: IProps) => {
         props.AddSubscribers(UserId, Me, data.subscriberList, data.subscribers)
     }
 
+    const DeleteFriend = () => {
+
+    }
+    useEffect(() => {
+        getFriends()
+    }, [data])
+
+    const getFriends =  () => {
+        if (data.friendList === undefined) {
+
+        }
+        props.UserFriendList(data.friendList)
+    }
+
+    const RenderFriends = () => {
+        return friends?.map<JSX.Element>((el: userInfo) => {
+            return (
+                <div className="friendList_miniature">
+                    <div key={el.id}  className="item">
+                        <Link  to={`/user_profile/${el.id}`}>
+                            <img
+                                alt="fas"
+                                className="friendList_photo"
+                                src={el.userphoto}
+                            />
+                        </Link>
+                        <div className="content">
+                            <div className="header thumb_header">{el.name} {el.surname}</div>
+                        </div>
+                    </div>
+                </div>
+            )
+        })
+    }
 
     const AddFriend = () => {
-        return (
-            <>
-                <button onClick={AddToSubscribers} className="ui inverted violet button">Add Friend</button>
-            </>
-        )
+        if (props.SignReducer?.friendList?.indexOf(UserId)) {
+           return <button onClick={AddToSubscribers} className="ui inverted violet button">Add Friend</button>
+        } else if (props.SignReducer.friendList === undefined) {
+            return <span>Nothing</span>
+        } else {
+           return <button onClick={DeleteFriend} className="ui youtube button">Delete Friend</button>
+        }
     }
 
     return (
@@ -137,9 +180,7 @@ const UserPage = (props: IProps) => {
             </div>
 
             <div className="user_friends">
-                <div className="ui segment">
-
-                </div>
+                {RenderFriends()}
             </div>
         </div>
     )
@@ -150,4 +191,4 @@ const mapStateToProps = (state: object) => {
 }
 
 
-export default connect(mapStateToProps , {AddSubscribers})(UserPage)
+export default connect(mapStateToProps , {AddSubscribers, MyFriendList, UserFriendList})(UserPage)

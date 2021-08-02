@@ -8,5 +8,6 @@ export enum redux_types {
     AddSub = "ADD_TO_SUBSCRIBERS",
     AddFriend = "ADD_TO_FRIENDS",
     getFriends = "GET_MY_FRIENDS",
+    getUserFriends = "GET_USER_FRIENDS",
     getSubs = "GET_MY_SUBSCRIBERS",
 }
