@@ -4,12 +4,10 @@ import {Photo} from "./PhotoInterface";
 
 
 const Photos = () => {
-
     const [term, setTerm]: [string, Function] = useState("");
     const [apiData, setApiData]: [Photo[], Function] = useState([])
     const ref = useRef<HTMLImageElement>(null)
     const [active, setActive]: [number, Function] = useState(54)
-    const [handler, setHandler]: [number, Function] = useState(0)
     const onFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         console.log(term)
@@ -21,21 +19,13 @@ const Photos = () => {
 
         console.log(apiData)
     }
-
-
-  const setSpans = () => {
-        const height = ref.current?.clientHeight || 0;
-        const spans = Math.ceil(height / 10);
-       setHandler(spans);
-    };
-
 const RenderPhotos = () => {
        return  apiData?.map((el:Photo, index: number) => {
             return (
                 <div>
                     {active !== index ? <img ref={ref} onClick={() => setActive(index)} alt={el.description} src={el.urls.regular} /> :
                         <div className="ui segment" style={{height: ref?.current?.height, backgroundImage: el.urls.regular}}>
-                            <div className="ui vertical buttons">
+                            <div onClick={() => setActive(54)} className="ui vertical buttons">
                                 <a href={el.links.download} className="ui pink button">Download</a>
                                 <div className="or"></div>
                                 <button className="ui positive button">Save</button>
@@ -46,8 +36,6 @@ const RenderPhotos = () => {
             )
         })
 }
-
-
     return (
         <div className="ui container" style={{ marginTop: '10px' }}>
             <div className="ui segment" >

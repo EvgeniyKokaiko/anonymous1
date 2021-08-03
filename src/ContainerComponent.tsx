@@ -16,7 +16,7 @@ import Context from "./components/Context/Context";
 interface IProps {
     Login(login: string, password: string): Function
     Register(name: string, surname: string, email: string, login: string, password: string, re_password: string, image: string): Function
-    SignReducer: userInfo | LogOut
+    SignReducer: userInfo
 }
 
 interface LogOut {
@@ -36,8 +36,8 @@ const ContainerComponent = (props: IProps) => {
 
     const context = useContext(ReactReduxContext)
     console.log(context.store.getState().SignReducer[0])
-    const [creator, setCreator] = useState(0)
-    const [modal, showModal] = useState(false)
+    let [creator, setCreator] = useState(0)
+    let [modal, showModal] = useState(false)
     const [handleAuth, setHandle] = useState(false)
     //Auth
     let [authUsername, setAuthUsername] = useState("")
@@ -184,23 +184,39 @@ const ContainerComponent = (props: IProps) => {
         }
     }
 
+    const Render = () => {
+        if (props.SignReducer.id === undefined) {
+            creator = 1;
+           return <div className="grid-container_modal">
+                <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
+                <AuthModal data={LoginNdRegister}  modalHandler={ShowModal} />
+            </div>
+        }
+
+      if (!modal) {
+          return (
+              <div className="grid-container">
+                  <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
+                  <Sidebar/>
+                  <Context.Provider value={userPost}>
+                      <Main/>
+                  </Context.Provider>
+                  <Footer/>
+              </div>
+          )
+      } else if (modal) {
+          return (
+              <div className="grid-container_modal">
+              <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
+              <AuthModal data={LoginNdRegister}  modalHandler={ShowModal} />
+              </div>
+          )
+      }
+    }
+
     return (
         <BrowserRouter>
-            {modal === false ?
-                <div className="grid-container">
-                    <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
-                    <Sidebar/>
-                    <Context.Provider value={userPost}>
-                        <Main/>
-                    </Context.Provider>
-                        <Footer/>
-                </div>
-                :
-                <div className="grid-container_modal">
-                    <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
-                    <AuthModal data={LoginNdRegister}  modalHandler={ShowModal} />
-                </div>
-            }
+            {Render()}
         </BrowserRouter>
     )
 }
