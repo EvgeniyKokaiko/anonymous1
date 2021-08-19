@@ -13,8 +13,8 @@ const user = context.store.getState().SignReducer.id
     return (
         <div className="aside_bar">
             { user !== undefined ? <NavLink className="nav_buttons" exact to={`/my_user_profile/${user}`}><i className="address book outline icon"></i> My Anonymous</NavLink> : <span className="nav_buttons">Not Found</span>}
-            <NavLink className="nav_buttons" exact to="/AllUsers"><i className="user secret icon"></i>User Database</NavLink>
             <NavLink className="nav_buttons" exact to="/"><i className="newspaper outline icon"></i> AnoNews</NavLink>
+            <NavLink className="nav_buttons" exact to="/AllUsers"><i className="user secret icon"></i>User Database</NavLink>
             <NavLink className="nav_buttons" exact to="/Messenger"><i className="phone volume icon"></i> Letters</NavLink>
             <NavLink className="nav_buttons" exact to="/Friends"><i className="users white icon"></i> Friends</NavLink>
             <NavLink className="nav_buttons" exact to="/Groups"><i className="handshake outline icon"></i> Groups</NavLink>

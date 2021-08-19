@@ -67,6 +67,10 @@ const News = () => {
         }
     }
 
+    // <iframe width="560" height="315" src={`https://www.youtube.com/embed/${video}`}
+    //         title="YouTube video player" frameBorder="0"
+    //         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    //         allowFullScreen></iframe></div> : ""}
 
     const RenderNews = () => {
         return data?.map(el => {
@@ -80,10 +84,10 @@ const News = () => {
                         <span className="author">{el.username}</span>
                         <div className="metadata">
                             <span className="date">{el.date}</span>
-                        </div>
+                        </div> 
                         <div className="text">{el.value}</div>
                         {el.video !== "none" ? <div className="text">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/gs-H9z2h0TA"
+                            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${el.video}`}
                                     title="YouTube video player" frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen></iframe></div> : ""}
