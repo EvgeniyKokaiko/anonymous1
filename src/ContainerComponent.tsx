@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {BrowserRouter} from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import Main from "./components/Main";
+import Routes from "./components/Routes";
 import Footer from "./components/Footer";
 import AuthModal from "./components/AuthModal";
-import {connect, ReactReduxContext, ReactReduxContextValue} from "react-redux";
+import {connect, ReactReduxContext} from "react-redux";
 import {Login, Register} from "./redux/actions";
 import {userInfo} from "./interfaces/interface";
 import axios from "axios";
@@ -38,7 +38,6 @@ const ContainerComponent = (props: IProps) => {
     console.log(context.store.getState().SignReducer[0])
     let [creator, setCreator] = useState(0)
     let [modal, showModal] = useState(false)
-    const [handleAuth, setHandle] = useState(false)
     //Auth
     let [authUsername, setAuthUsername] = useState("")
    let [authPassword, setAuthPassword] = useState("")
@@ -63,10 +62,10 @@ const ContainerComponent = (props: IProps) => {
 
    const  LoginSubmit = () => {
         console.log(props);
-        if (remember === true) {
+        if (remember) {
             localStorage.setItem("isAuthAnonym", "true");
             localStorage.setItem("UserInfoAnonym", JSON.stringify({id: authUsername, password: authPassword}))
-        } else if (remember === false) {
+        } else if (!remember) {
             localStorage.setItem("isAuthAnonym", JSON.stringify(false));
             localStorage.setItem("UserInfoAnonym", "{}");
         }
@@ -199,7 +198,7 @@ const ContainerComponent = (props: IProps) => {
                   <Header modalHandler={ShowModal} isAuth={isAuth} LogOut={LogOut}  />
                   <Sidebar/>
                   <Context.Provider value={userPost}>
-                      <Main/>
+                      <Routes/>
                   </Context.Provider>
                   <Footer/>
               </div>

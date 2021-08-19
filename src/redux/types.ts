@@ -3,6 +3,7 @@ export enum redux_types {
     FetchMe = "AUTH_USER",
     Register = "REG_USER",
     MeAddPost = "I_ADD_POST",
+    DeletePost = "DELETE_POST",
     LogOut = "LOG_OUT",
     ChangeMyData = "CHANGE_USER_DATA",
     AddSub = "ADD_TO_SUBSCRIBERS",
@@ -10,4 +11,6 @@ export enum redux_types {
     getFriends = "GET_MY_FRIENDS",
     getUserFriends = "GET_USER_FRIENDS",
     getSubs = "GET_MY_SUBSCRIBERS",
+    AddNews = "ADD_NEW_NEWS",
+    FetchNews = "FETCH_NEWS"
 }

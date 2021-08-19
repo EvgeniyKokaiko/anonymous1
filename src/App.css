@@ -155,7 +155,7 @@ position: relative;
     position: absolute;
     grid-area: ps;
     margin-top: -25.4vh;
-    width: 27.8vw;
+    width: 28.3vw;
     height: 50vh;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -336,7 +336,12 @@ position: relative;
     width: 9vw;
 }
 
-
+.news_container {
+    width: 90vw;
+    height: 76vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 
 
 

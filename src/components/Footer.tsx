@@ -12,6 +12,8 @@ const Footer = () => {
         <NavLink className="nav_buttons" to="/user_profile">My Account</NavLink>
         <NavLink className="nav_buttons" to="/Music">Music</NavLink>
         <NavLink className="nav_buttons" to="/Videos">Videos</NavLink>
+        <NavLink className="nav_buttons" to="/Photos">Videos</NavLink>
+        <NavLink className="nav_buttons" to="/AllUsers">AllUsers</NavLink>
     </div>
     )
 }

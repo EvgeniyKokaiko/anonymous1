@@ -20,8 +20,8 @@ function UserReducer(state = init , action: Dispatcher) {
 function SignReducer(state = init, action: Dispatcher) {
     if (action.type === redux_types.FetchMe) {
         return action.payload
-    } else if (action.type === redux_types.Register) {
-    } else if (action.type === redux_types.LogOut) {
+    } else if (action.type === redux_types.Register) {}
+      else if (action.type === redux_types.LogOut) {
         return {username: "404 ERROR | DATA NOT FOUND / NOT AUTH"}
     }
 
@@ -81,6 +81,22 @@ function AddFriendsReducer(state = {}, action: Dispatcher) {
     return state
 }
 
+
+function DeletePost (state = {}, action: Dispatcher) {
+    if (action.type === redux_types.DeletePost) {}
+    if (action.type === redux_types.AddNews) {}
+    return state
+}
+
+function NewsReducer (state = [], action: Dispatcher) {
+    if (action.type === redux_types.FetchNews) {
+        return action.payload
+    }
+
+    return state
+}
+
+
 export default combineReducers({
     UserReducer,
     SignReducer,
@@ -90,5 +106,7 @@ export default combineReducers({
     getFriendsReducer,
     getSubReducer,
     AddFriendsReducer,
-    getUserFriendsReducer
+    getUserFriendsReducer,
+    DeletePost,
+    NewsReducer
 })

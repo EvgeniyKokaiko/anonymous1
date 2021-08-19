@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {Dispatcher, userInfo, userPosts} from "../../interfaces/interface";
 import {connect} from "react-redux";
-import {Login, MyAddPost, MyFriendList} from "../../redux/actions";
+import {DeletePost, Login, MyAddPost, MyFriendList} from "../../redux/actions";
 import {ChangeUserData} from "../../redux/actions";
 import Context from "../Context/Context";
 import { Link } from "react-router-dom";
@@ -12,8 +12,9 @@ interface IProps {
     SignReducer: userInfo
     ChangeUserData(login: string,about: string, city: string, country: string, userphoto: string):any
     MyAddPost(login: string, editValues: userPosts[]) : any
+    DeletePost(login: string, posts: userPosts[], deletedPost: userPosts): any
     MyFriendList(friendId: string[]): any
-    Login(login: string, password: string): any
+    Login(login: string, password: string | undefined): any
     getFriendsReducer: userInfo[]
 
 }
@@ -22,6 +23,7 @@ const MyPage = (props: IProps) => {
     const context = useContext(Context)
     const friends: userInfo[] = props.getFriendsReducer
     console.log(props)
+    const [deletePost, setDeletePost] = useState(-1)
     const [isChange, setChange] = useState(false)
     let User: userInfo = props.SignReducer
     const [thinks, setThinks] = useState(User?.about);
@@ -29,6 +31,10 @@ const MyPage = (props: IProps) => {
     const [country, setCountry] = useState(User?.country);
     const [photo, changePhoto] = useState(User?.userphoto);
 
+
+    useEffect(() => {
+        props.Login(User.id, User.password)
+    }, [props.DeletePost, props.MyAddPost])
 
     useEffect(() => {
         getFriends()
@@ -87,8 +93,8 @@ const ChangeData = () => {
     const AddPost = () => {
         const random = Math.random()
         const value = postVal === "" ? "Anonymous" : postVal
-        setRerender([...rerender, {id:random, value: value, date: DateParser()}])
-       props.MyAddPost(props.SignReducer.id, [...User?.posts, {id:random, value: value, date: DateParser()}])
+        setRerender([...rerender, {userphoto: User.userphoto,nameId: User.id, name: `${User.name} ${User.surname}`,id:random, value: value, date: DateParser()}])
+       props.MyAddPost(props.SignReducer.id, [...User?.posts, {userphoto: User.userphoto,nameId: User.id, name: `${User.name} ${User.surname}`,id:random, value: value, date: DateParser()}])
         console.log(rerender)
         console.log(User.posts)
     }
@@ -100,15 +106,16 @@ const RenderPosts = () => {
     if (rerender === undefined) {
         setRerender(context)
     }
-       return User?.posts?.map(el => {
+       return User?.posts?.map((el, index) => {
             return (
                 <div key={el.id} className="ui comments">
-                    <div className="comment">
+                    <div className="comment" onMouseEnter={() => setDeletePost(index)} onMouseLeave={() => setDeletePost(-1)}>
+                        {index === deletePost ? <button onClick={() => props.DeletePost(User.id,User.posts, el)} className="ui right floated red button">Delete</button> : ""}
                         <span className="avatar">
-                            <img className="avatar_img" src={User?.userphoto} alt="UserPhoto" />
+                            <img className="avatar_img" src={el.userphoto} alt="UserPhoto" />
                         </span>
                         <div className="content">
-                            <span className="author">{User?.name} {User?.surname}</span>
+                            <span className="author">{el.name}</span>
                             <div className="metadata">
                                 <div className="date">{el.date}</div>
                             </div>
@@ -192,4 +199,4 @@ const mapStateToProps = (state: object) => {
 }
 
 
-export default connect(mapStateToProps , {MyAddPost, ChangeUserData, Login, MyFriendList})(MyPage)
+export default connect(mapStateToProps , {MyAddPost, ChangeUserData, Login, MyFriendList, DeletePost})(MyPage)

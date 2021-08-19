@@ -21,6 +21,9 @@ export interface userInfo {
 
 
 export interface userPosts {
+    userphoto: string
+    name: string
+    nameId: string
     id: number,
     value: string,
     date: string
@@ -30,4 +33,32 @@ export interface userPosts {
 export interface Dispatcher {
     type: string,
     payload?: object
+}
+
+export interface NewsPost {
+    value: string,
+    photo: string,
+    video: string,
+    username: string,
+    userPhoto: string,
+    userId: string,
+    date: string,
+    likes: Like[]
+}
+
+export interface Like {
+    id: string,
+    photo: string,
+    username: string
+}
+
+export interface Store {
+    MeAddPostReducer: userPosts[]
+    MeChangeDataReducer: string
+    NewsReducer: NewsPost[]
+    SignReducer: userInfo,
+    UserReducer: userInfo[]
+    getFriendsReducer: string[]
+    getSubReducer: string[]
+    getUserFriendsReducer: userInfo[]
 }

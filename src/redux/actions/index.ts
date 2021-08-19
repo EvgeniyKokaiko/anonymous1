@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Dispatcher, userInfo, userPosts} from "../../interfaces/interface";
+import {Dispatcher, NewsPost, userInfo, userPosts} from "../../interfaces/interface";
 import {Dispatch} from "redux";
 import {redux_types} from "../types";
 
@@ -17,7 +17,7 @@ export const fetchUsers = () => async (dispatch: Dispatch<Dispatcher>) => {
 
 export const Login = (login: string, pass: string) => async (dispatch: Dispatch<Dispatcher>) => {
 try {
-    const response = await axios.get(`http://localhost:3001/users/${login}`).then(el => {
+    await axios.get(`http://localhost:3001/users/${login}`).then(el => {
         const password = el.data.password;
         if (password === pass && el.data.login === login) {
             dispatch({type: redux_types.FetchMe, payload: el.data});
@@ -139,7 +139,7 @@ export const AddFriend = (login: string ,subscriber: string, sublist: string[], 
         let data: userInfo = res.data
         delete data.login
         delete data.password
-        const response2 = await axios.patch(`http://localhost:3001/users/${subscriber}`, {
+        await axios.patch(`http://localhost:3001/users/${subscriber}`, {
             friendList: [...data.friendList, login],
             friends: data.friends + 1
         })
@@ -147,3 +147,32 @@ export const AddFriend = (login: string ,subscriber: string, sublist: string[], 
 }
 
 
+
+export const DeletePost = (login: string, posts: userPosts[], deletedPost: userPosts) => async (dispatch: Dispatch<Dispatcher>) => {
+    await axios.patch(`http://localhost:3001/users/${login}`, {
+        posts: posts.filter(el => el !== deletedPost)
+    })
+    dispatch({type: redux_types.DeletePost})
+}
+
+
+export const AddNews = (value: string, photo: string, video: string,username: string, userPhoto: string,userId: string,date: string) => async (dispatch: Dispatch<Dispatcher>) => {
+
+    await axios.post<NewsPost>("http://localhost:3001/news", {
+        value,
+        photo,
+        video,
+        username,
+        userPhoto,
+        userId,
+        date,
+        likes: []
+    })
+    dispatch({ type: redux_types.AddNews})
+}
+
+export const FetchNews = (page: number) => async (dispatch: Dispatch<Dispatcher>) => {
+    const response = await axios.get(`http://localhost:3001/news?_start=${page}&_end=${(page + 1) * 10}`);
+
+    dispatch({type: redux_types.FetchNews, payload: response.data})
+}
